@@ -53,13 +53,18 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
 
             const textWidth = ctx.measureText(line).width;
 
-            // Dessiner un rectangle de fond pour chaque ligne de texte
-            ctx.fillRect(textX - textWidth / 2 - 5, lineY - fontSize / 2 - 5, textWidth + 10, fontSize + 10);
+            // Dessiner un rectangle de fond pour le texte
+            ctx.fillRect(
+                textX - textWidth / 2 - 5,
+                lineY - fontSize + 5,
+                textWidth + 10,
+                fontSize + 5
+            );
 
             // Utiliser des couleurs distinctes pour le contour et le texte
             ctx.lineWidth = 3;
-            // ctx.strokeStyle = '#35495e';
-            ctx.fillStyle = '#5cb984';
+            ctx.strokeStyle = '#35495e';
+            ctx.fillStyle = '#fff';
 
             // Dessiner chaque ligne de texte
             ctx.strokeText(line, textX, lineY);
