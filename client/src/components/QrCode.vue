@@ -10,25 +10,6 @@ import { QrcodeStream } from 'vue-qrcode-reader';
 
 const selected = ref({ text: 'centered text', value: paintBoundingBoxAndText });
 
-function paintOutline(detectedCodes, ctx) {
-    console.log(detectedCodes)
-
-    for (const detectedCode of detectedCodes) {
-        const [firstPoint, ...otherPoints] = detectedCode.cornerPoints
-
-        ctx.strokeStyle = 'red'
-
-        ctx.beginPath()
-        ctx.moveTo(firstPoint.x, firstPoint.y)
-        for (const { x, y } of otherPoints) {
-            ctx.lineTo(x, y)
-        }
-        ctx.lineTo(firstPoint.x, firstPoint.y)
-        ctx.closePath()
-        ctx.stroke()
-    }
-}
-
 function paintBoundingBoxAndText(detectedCodes, ctx) {
     for (const detectedCode of detectedCodes) {
         const { boundingBox, rawValue } = detectedCode;
@@ -56,8 +37,16 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         ctx.font = `bold ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
 
+        // Convertir la chaîne JSON en objet
+        const artisteInfo = JSON.parse(rawValue);
+
+        // Afficher les informations de l'artiste de manière structurée
+        const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}`;
+
+        console.log(artisteText);
+
         const lineHeight = fontSize + 5; // Espace entre les lignes
-        const lines = rawValue.split('\n'); // Séparer les lignes par les sauts de ligne
+        const lines = artisteText.split('\n'); // Séparer les lignes par les sauts de ligne
 
         // Dessiner chaque ligne de texte
         for (let i = 0; i < lines.length; i++) {
@@ -80,6 +69,7 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         }
     }
 }
+
 
 const logErrors = console.error;
 
