@@ -30,26 +30,42 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         const textX = centerX;
         const textY = centerY; // Ajustez selon vos besoins
 
-        // Dessiner un rectangle de fond blanc pour le texte avec de la marge
-        const padding = 10;
-        const textWidth = ctx.measureText(rawValue).width;
-        const textHeight = fontSize + padding * 2;
+        // Convertir la chaîne JSON en objet
+        const artisteInfo = JSON.parse(rawValue);
 
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(
-            textX - textWidth / 2 - padding,
-            textY - textHeight / 2,
-            textWidth + padding * 2,
-            textHeight
-        );
+        // Afficher les informations de l'artiste de manière structurée
+        const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}\n`;
 
-        // Utiliser une couleur de texte noire sans contour
-        ctx.font = `bold ${fontSize}px sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.fillStyle = '#000';
+        const lineHeight = fontSize + 5; // Espace entre les lignes
+        const lines = artisteText.split('\n'); // Séparer les lignes par les sauts de ligne
 
-        // Dessiner le texte
-        ctx.fillText(rawValue, textX, textY);
+        // Dessiner chaque ligne de texte
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const lineY = textY + i * lineHeight - (lines.length - 1) * lineHeight / 2;
+
+            const textWidth = ctx.measureText(line).width;
+
+            // Dessiner un rectangle de fond blanc pour le texte avec de la marge
+            const padding = 10;
+            const textHeight = fontSize + padding * 2;
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(
+                textX - textWidth / 2 - padding,
+                lineY - textHeight / 2,
+                textWidth + padding * 2,
+                textHeight
+            );
+
+            // Utiliser une couleur de texte noire sans contour
+            ctx.font = `bold ${fontSize}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#000';
+
+            // Dessiner chaque ligne de texte
+            ctx.fillText(line, textX, lineY);
+        }
     }
 }
 
