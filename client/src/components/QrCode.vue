@@ -43,10 +43,6 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         // Afficher les informations de l'artiste de manière structurée
         const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}\n`;
 
-        for (const geoloc of artisteInfo.second_step_geoloc) {
-            artisteText += `\n\nAdresse: ${geoloc.adresse}\nLatitude: ${geoloc.latitude}\nLongitude: ${geoloc.longitude}\n`;
-        }
-
         const lineHeight = fontSize + 5; // Espace entre les lignes
         const lines = artisteText.split('\n'); // Séparer les lignes par les sauts de ligne
 
