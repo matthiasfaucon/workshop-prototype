@@ -12,10 +12,8 @@ app.post('/generate-qrcode', async (req, res) => {
     // Récupérer le body de la requête
     const artisteData = req.body;
     // Récupérer les données de l'artiste
-    console.log(artisteData);
 
     const artisteString = JSON.stringify(artisteData);
-    console.log(artisteString);
 
     // Générer le QR code
     const qrCode = await QRCode.toDataURL(artisteString);
