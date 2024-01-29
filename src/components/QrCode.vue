@@ -9,7 +9,9 @@
             </select>
         </p>
 
-        <qrcode-stream :track="selected.value" @error="logErrors" />
+        <qrcode-stream :track="selected.value" @result="handleQrCodeResult" @error="logErrors" />
+        <div ref="map" style="height: 400px; width: 100%;"></div>
+
     </div>
 </template>
   
@@ -26,7 +28,10 @@ const options = [
 
 const selected = ref(options[1]);
 
+const mapRef = ref(null);
+
 function paintOutline(detectedCodes, ctx) {
+    console.log(detectedCodes)
 
     for (const detectedCode of detectedCodes) {
         const [firstPoint, ...otherPoints] = detectedCode.cornerPoints
@@ -78,5 +83,27 @@ function paintCenterText(detectedCodes, ctx) {
     }
 }
 const logErrors = console.error;
+
+function handleQrCodeResult(result) {
+    if (result) {
+        // Supposons que le résultat du QR code est une paire de coordonnées [latitude, longitude]
+        const [latitude, longitude] = result.split(',');
+
+        // Centrer la carte sur les coordonnées du QR code
+        if (mapRef.value) {
+            const map = new google.maps.Map(mapRef.value, {
+                center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+                zoom: 15
+            });
+
+            // Ajoutez un marqueur à la position
+            const marker = new google.maps.Marker({
+                position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
+                map: map,
+                title: 'QR Code Location'
+            });
+        }
+    }
+}
 
 </script>
