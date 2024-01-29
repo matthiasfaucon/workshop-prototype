@@ -39,29 +39,34 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         const lineHeight = fontSize + 5; // Espace entre les lignes
         const lines = artisteText.split('\n'); // Séparer les lignes par les sauts de ligne
 
+        // Trouver la largeur maximale parmi toutes les lignes
+        let maxWidth = 0;
+        for (const line of lines) {
+            const lineWidth = ctx.measureText(line).width;
+            maxWidth = Math.max(maxWidth, lineWidth);
+        }
+
+        // Dessiner un rectangle de fond blanc pour le texte avec de la marge
+        const padding = 10;
+        const textHeight = lines.length * lineHeight + padding * 2;
+
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(
+            textX - maxWidth / 2 - padding,
+            textY - textHeight / 2,
+            maxWidth + padding * 2,
+            textHeight
+        );
+
+        // Utiliser une couleur de texte noire sans contour
+        ctx.font = `bold ${fontSize}px sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#000';
+
         // Dessiner chaque ligne de texte
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
             const lineY = textY + i * lineHeight - (lines.length - 1) * lineHeight / 2;
-
-            const textWidth = ctx.measureText(line).width;
-
-            // Dessiner un rectangle de fond blanc pour le texte avec de la marge
-            const padding = 10;
-            const textHeight = fontSize + padding * 2;
-
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(
-                textX - textWidth / 2 - padding,
-                lineY - textHeight / 2,
-                textWidth + padding * 2,
-                textHeight
-            );
-
-            // Utiliser une couleur de texte noire sans contour
-            ctx.font = `bold ${fontSize}px sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.fillStyle = '#000';
 
             // Dessiner chaque ligne de texte
             ctx.fillText(line, textX, lineY);
