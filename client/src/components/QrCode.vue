@@ -24,7 +24,7 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         const centerX = x + width / 2;
         const centerY = y + height / 2;
 
-        const fontSize = Math.max(12, (50 * width) / ctx.canvas.width);
+        const fontSize = Math.max(10, (50 * width) / ctx.canvas.width);
 
         // Utiliser une couleur de fond pour le texte
         ctx.fillStyle = '#fff';
@@ -34,14 +34,18 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         const textY = centerY; // Ajustez selon vos besoins
 
         // Dessiner un rectangle de fond pour le texte
-        ctx.font = `bold ${fontSize}px sans-serif`;
+        ctx.font = `bold ${fontSize}px nunito`;
         ctx.textAlign = 'center';
 
         // Convertir la chaîne JSON en objet
         const artisteInfo = JSON.parse(rawValue);
 
         // Afficher les informations de l'artiste de manière structurée
-        const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}`;
+        const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}\n`;
+
+        for (const geoloc of artisteInfo.second_step_geoloc) {
+            artisteText += `\n\nAdresse: ${geoloc.adresse}\nLatitude: ${geoloc.latitude}\nLongitude: ${geoloc.longitude}\n`;
+        }
 
         console.log(artisteText);
 
@@ -59,8 +63,8 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
             ctx.fillRect(textX - textWidth / 2 - 5, lineY - fontSize / 2 - 5, textWidth + 10, fontSize + 10);
 
             // Utiliser des couleurs distinctes pour le contour et le texte
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#35495e';
+            ctx.lineWidth = 5;
+            // ctx.strokeStyle = '#35495e';
             ctx.fillStyle = '#5cb984';
 
             // Dessiner chaque ligne de texte

@@ -7,10 +7,22 @@ export const useArtistsList = defineStore('artistesList', () => {
         nom: "Artiste 1",
         description: "Description de l'artiste 1",
         image: "image1.jpg",
-        first_geoloc: {
+        first_step_geoloc: {
           latitude: 48.856614,
           longitude: 2.3522219
         },
+        second_step_geoloc : [
+          {
+            adresse : "Adresse 1",
+            latitude: 40.18995,
+            longitude: 10.59605
+          },
+          {
+            adresse : "Adresse 2",
+            latitude: 75.5941,
+            longitude: 5.18951
+          }
+        ]
     },
     {
         id: 2,
