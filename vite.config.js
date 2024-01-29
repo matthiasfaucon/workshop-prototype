@@ -8,7 +8,7 @@ export default defineConfig({
 
   // Lancer sur le réseau local avec l'adresse IP
   server: {
-    host: '10.0.3.62',
+    host: 'localhost',
     port: 3000,
   },
   plugins: [

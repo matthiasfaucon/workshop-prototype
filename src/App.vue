@@ -1,20 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import QrCode from './components/QrCode.vue';
 
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <img class="logo" src="./assets/logo.svg" alt="Vue logo" />
-      <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/qrcode">QR Code</router-link>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <QrCode />
 </template>
 
 <style scoped>
