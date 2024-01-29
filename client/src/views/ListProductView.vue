@@ -37,14 +37,20 @@ const { artistesList } = useArtistsList()
 
 <style scoped>
 .swiper {
-  padding: 10rem;
-  height: 24rem;
+  padding: 2rem;
+  /* Ajustez selon vos besoins */
+  height: 100%;
+  /* Utilisez la hauteur en pourcentage pour une meilleure responsivité */
   display: flex;
+  overflow: hidden;
+  /* Empêche le débordement des éléments en dehors du conteneur */
 }
 
+
 .swiper-slide {
-  width: 33%;
-  height: max-content;
+  width: 100%;
+  flex: 0 0 auto;
+  /* Assurez-vous que la largeur est déterminée par le contenu */
 }
 
 .swiper-slide-nom {
@@ -57,6 +63,11 @@ const { artistesList } = useArtistsList()
   font-size: 1rem;
   font-weight: 500;
   color: white;
+}
+
+.swiper-slide-image {
+  width: 100%;
+  height: auto;
 }
 </style>
 
