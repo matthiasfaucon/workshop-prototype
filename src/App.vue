@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <div class="wrapper">
-      <img class="logo" src="./assets/logo.png" alt="Vue logo" />
+      <img class="logo" src="./assets/logo.svg" alt="Vue logo" />
       <nav>
         <router-link to="/">Home</router-link>
         <router-link to="/qrcode">QR Code</router-link>
