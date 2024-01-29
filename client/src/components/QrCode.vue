@@ -26,50 +26,30 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
 
         const fontSize = Math.max(12, (50 * width) / ctx.canvas.width);
 
-        // Utiliser une couleur de fond pour le texte
-        ctx.fillStyle = '#fff';
-
         // Ajouter un espace autour du texte
         const textX = centerX;
         const textY = centerY; // Ajustez selon vos besoins
 
-        // Dessiner un rectangle de fond pour le texte
+        // Dessiner un rectangle de fond blanc pour le texte avec de la marge
+        const padding = 10;
+        const textWidth = ctx.measureText(rawValue).width;
+        const textHeight = fontSize + padding * 2;
+
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(
+            textX - textWidth / 2 - padding,
+            textY - textHeight / 2,
+            textWidth + padding * 2,
+            textHeight
+        );
+
+        // Utiliser une couleur de texte noire sans contour
         ctx.font = `bold ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
+        ctx.fillStyle = '#000';
 
-        // Convertir la chaîne JSON en objet
-        const artisteInfo = JSON.parse(rawValue);
-
-        // Afficher les informations de l'artiste de manière structurée
-        const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}\n`;
-
-        const lineHeight = fontSize + 5; // Espace entre les lignes
-        const lines = artisteText.split('\n'); // Séparer les lignes par les sauts de ligne
-
-        // Dessiner chaque ligne de texte
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
-            const lineY = textY + i * lineHeight - (lines.length - 1) * lineHeight / 2;
-
-            const textWidth = ctx.measureText(line).width;
-
-            // Dessiner un rectangle de fond pour le texte
-            ctx.fillRect(
-                textX - textWidth / 2 - 5,
-                lineY - fontSize + 5,
-                textWidth + 10,
-                fontSize + 5
-            );
-
-            // Utiliser des couleurs distinctes pour le contour et le texte
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#35495e';
-            ctx.fillStyle = '#fff';
-
-            // Dessiner chaque ligne de texte
-            ctx.strokeText(line, textX, lineY);
-            ctx.fillText(line, textX, lineY);
-        }
+        // Dessiner le texte
+        ctx.fillText(rawValue, textX, textY);
     }
 }
 
