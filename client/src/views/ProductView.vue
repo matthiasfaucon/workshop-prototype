@@ -19,11 +19,12 @@ const userLocation = ref(null);
 
 onMounted(async () => {
   id.value = props.id;
+  console.log('id:', id.value);
   getUserLocation();
 
   try {
     const response = await axios.post(`https://workshop-prototype.vercel.app/generate-qrcode`, {
-      artiste: artistesList[id.value],
+      artiste: artistesList[id.value - 1],
     });
 
     console.log(response.data); // Les données retournées par le serveur
