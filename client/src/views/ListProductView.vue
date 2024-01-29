@@ -16,7 +16,7 @@
     <SwiperSlide v-for="artiste in artistesList  " :key="artiste.id">
       <RouterLink :to='`/product/${artiste.id}`'>
         <div class="swiper-slide-content">
-          <img :src="`../dist/${artiste.image}`" :alt="`${artiste.image}`" class="swiper-slide-image">
+          <img :src="`../dist/images/${artiste.image}`" :alt="`${artiste.image}`" class="swiper-slide-image">
           <p class="swiper-slide-nom">{{ artiste.nom }}</p>
           <p class="swiper-slide-description">{{ artiste.description }}</p>
         </div>

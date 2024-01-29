@@ -34,11 +34,13 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         const textY = centerY; // Ajustez selon vos besoins
 
         // Dessiner un rectangle de fond pour le texte
-        ctx.font = `bold ${fontSize}px nunito`;
+        ctx.font = `bold ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
 
+        console.log(rawValue);
         // Convertir la chaîne JSON en objet
         const artisteInfo = JSON.parse(rawValue);
+
 
         // Afficher les informations de l'artiste de manière structurée
         const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}\n`;
