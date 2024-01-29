@@ -33,6 +33,18 @@ export const useArtistsList = defineStore('artistesList', () => {
           latitude: 45.856614,
           longitude: 5.3522219
         },
+        second_step_geoloc : [
+          {
+            adresse : "Adresse 1",
+            latitude: 40.18995,
+            longitude: 10.59605
+          },
+          {
+            adresse : "Adresse 2",
+            latitude: 75.5941,
+            longitude: 5.18951
+          }
+        ]
     },
     {
         id: 3,
@@ -43,8 +55,19 @@ export const useArtistsList = defineStore('artistesList', () => {
           latitude: 85.856614,
           longitude: 9516.3522219
         },
+        second_step_geoloc : [
+          {
+            adresse : "Adresse 1",
+            latitude: 40.18995,
+            longitude: 10.59605
+          },
+          {
+            adresse : "Adresse 2",
+            latitude: 75.5941,
+            longitude: 5.18951
+          }
+        ]
     }
-    // Ajoutez d'autres artistes selon vos besoins
   ]
 
   return { artistesList }
