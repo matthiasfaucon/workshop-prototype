@@ -1,73 +1,53 @@
+<template>
+  <div>
+    <div class="wrapper">
+      <nav>
+        <img class="logo" src="./assets/logo.svg" alt="Logo" />
+        <!-- <RouterLink to="/">Accueil</RouterLink>
+        <RouterLink to="/product">Produit</RouterLink> -->
+      </nav>
+      <RouterView />
+    </div>
+  </div>
+</template>
+
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import QrCode from './components/QrCode.vue';
+import { RouterLink, RouterView } from 'vue-router';
 
 </script>
 
-<template>
-  <QrCode />
-</template>
+<style>
+#app {
+  background-color: rgb(34, 34, 34);
+  height: 100%;
+}
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 100vh;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  width: 50px;
+  height: 50px;
 }
 
 nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
   background-color: transparent;
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 </style>
