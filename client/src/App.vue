@@ -3,6 +3,7 @@
     <div class="wrapper">
       <nav>
         <img class="logo" src="./assets/logo.svg" alt="Logo" />
+        <h2 class="color-brand-texte">Scan Infinity</h2>
         <!-- <RouterLink to="/">Accueil</RouterLink>
         <RouterLink to="/product">Produit</RouterLink> -->
       </nav>
@@ -53,5 +54,10 @@ nav a {
 
 a {
   text-decoration: none;
+}
+
+.color-brand-texte {
+  color: #f5f5f5;
+  font-size: 1.2rem;
 }
 </style>

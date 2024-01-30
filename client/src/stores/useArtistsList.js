@@ -58,12 +58,14 @@ export const useArtistsList = defineStore('artistesList', () => {
         {
           adresse : "Adresse 1",
           latitude: 40.18995,
-          longitude: 10.59605
+          longitude: 10.59605,
+          is_working: true
         },
         {
           adresse : "Adresse 2",
           latitude: 75.5941,
-          longitude: 5.18951
+          longitude: 5.18951,
+          is_working: false
         }
       ]
     }
