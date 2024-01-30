@@ -193,4 +193,11 @@ const logErrors = console.error;
 .artist-presentation {
     width: 70%;
 }
+
+@media screen and (max-width: 560px) {
+    .artist {
+        flex-direction: column;
+    }
+
+}
 </style>

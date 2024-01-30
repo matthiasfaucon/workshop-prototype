@@ -41,7 +41,7 @@
     <div v-for="artiste in artistesList" class="boucle-exclu">
       <RouterLink :to='`/product/${artiste.id}`'>
         <div class="swiper-slide-content-exclu">
-          <img :src="`./src/assets/${artiste.image}`" :alt="`${artiste.image}`" class="swiper-slide-image">
+          <img :src="`./src/assets/${artiste.image}`" :alt="`${artiste.image}`" class="swiper-slide-image-exclu">
           <p class="swiper-slide-nom">{{ artiste.nom }}</p>
           <p class="swiper-slide-description">Du {{ formatDate(artiste.begin_date) }} au {{ formatDate(artiste.end_date)
           }}</p>
@@ -121,16 +121,29 @@ h2 {
   color: white;
 }
 
+.container-exclu {
+  padding: 3rem 0 3rem 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .swiper-slide-description {
   font-size: 1.2rem;
   font-family: 'Futura Hv BT';
   font-weight: 600;
   color: white;
+  text-align: center;
 }
 
 .swiper-slide-image {
-  width: 100%;
   height: auto;
+  width: 100%;
+}
+
+.swiper-slide-image-exclu {
+  width: 50%;
 }
 
 .swiper-slide-content {
@@ -142,28 +155,48 @@ h2 {
 
 .swiper-slide-content-exclu {
   display: flex;
-  flex-direction: row;
-  align-self: center;
+  flex-direction: column;
+  /* align-self: center; */
   flex-wrap: wrap;
-  width: 90%;
+  width: 100%;
   justify-self: center;
-  justify-content: flex-start;
-  padding: 0rem 5rem;
+  /* justify-content: flex-start; */
+  padding: 0rem 0rem;
+  /* align-content: flex-start; */
+  align-items: center;
 }
 
 .boucle-exclu {
   display: flex;
-  width: 50%;
+  width: 30%;
 }
 
 .boucle-exclu a {
-  width: 50%;
+  width: 100%;
 }
 
 .swiper-slide-content:hover img {
   transform: scale(1.02);
   transition: transform 0.3s ease-in-out;
 
+}
+
+@media screen and (max-width: 560px) {
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 2rem 2rem 0;
+  }
+
+  .filters {
+    width: 70%;
+    margin: 2rem 2rem 0;
+    gap: 1rem;
+  }
+
+  .boucle-exclu {
+    width: calc(50% - 1rem);
+  }
 }
 </style>
 

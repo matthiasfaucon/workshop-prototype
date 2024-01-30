@@ -2,7 +2,9 @@
   <div>
     <div class="wrapper">
       <nav>
-        <img class="logo" src="./assets/logo_scanfinity_white.svg" alt="Logo" />
+        <RouterLink to="/">
+          <img class="logo" src="./assets/logo_scanfinity_white.svg" alt="Logo" />
+        </RouterLink>
         <!-- <h2 class="color-brand-texte">Scan Infinity</h2> -->
         <!-- <RouterLink to="/">Accueil</RouterLink>
         <RouterLink to="/product">Produit</RouterLink> -->

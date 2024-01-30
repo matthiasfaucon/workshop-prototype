@@ -38,7 +38,7 @@ onMounted(() => {
     align-items: center;
     margin-top: 2rem;
     gap: 10rem;
-    height: 33rem;
+    min-height: 33rem;
 }
 
 .coordonnees {
@@ -70,5 +70,14 @@ onMounted(() => {
 .coordonnees:hover {
     background-color: #718DEA;
     cursor: pointer;
+}
+
+@media screen and (max-width: 560px) {
+
+    .container-coordonnees {
+        flex-direction: column;
+        gap: 0;
+        height: 100%;
+    }
 }
 </style>
