@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <Map></Map> -->
-    <Coordonnees />
+    <!-- <Coordonnees /> -->
     <QrCode :artistesList="artistesList" @handleQrCodeResult="handleQrCodeResult" />
   </div>
 </template>

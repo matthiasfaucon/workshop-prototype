@@ -3,7 +3,7 @@
         <qrcode-stream :track="selected.value" @result="handleQrCodeResult" @error="logErrors" />
     </div>
     <div v-else>
-        <p>Code QR détecté</p>
+        <Coordonnees />
     </div>
 </template>
   
