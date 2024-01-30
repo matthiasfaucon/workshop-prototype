@@ -1,6 +1,9 @@
 <template>
-    <div>
+    <div v-if="isDisplay" class="qr-code-display">
         <qrcode-stream :track="selected.value" @result="handleQrCodeResult" @error="logErrors" />
+    </div>
+    <div v-else>
+        <p>Code QR détecté</p>
     </div>
 </template>
   
@@ -9,6 +12,7 @@ import { ref } from 'vue';
 import { QrcodeStream } from 'vue-qrcode-reader';
 
 const selected = ref({ text: 'centered text', value: paintBoundingBoxAndText });
+const isDisplay = ref(true);
 
 function paintBoundingBoxAndText(detectedCodes, ctx) {
     for (const detectedCode of detectedCodes) {
@@ -34,7 +38,7 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         const artisteInfo = JSON.parse(rawValue);
 
         // Afficher les informations de l'artiste de manière structurée
-        const artisteText = `Artiste: ${artisteInfo.artiste.nom}\nDescription: ${artisteInfo.artiste.description}\nImage: ${artisteInfo.artiste.image}\n`;
+        const artisteText = `Artiste: ${artisteInfo.artiste.nom}`;
 
         const lineHeight = fontSize + 5; // Espace entre les lignes
         const lines = artisteText.split('\n'); // Séparer les lignes par les sauts de ligne
@@ -72,8 +76,23 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
             ctx.fillText(line, textX, lineY);
         }
     }
+    isDisplay.value = false;
 }
 
 const logErrors = console.error;
 
 </script>
+
+<style>
+.qr-code-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.qr-code-display div {
+    height: 35rem !important;
+    width: 80% !important;
+}
+</style>

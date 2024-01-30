@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- <Map></Map> -->
+    <Coordonnees />
     <QrCode :artistesList="artistesList" @handleQrCodeResult="handleQrCodeResult" />
   </div>
 </template>
@@ -10,6 +11,7 @@ import { defineProps, ref, onMounted } from 'vue';
 import { useArtistsList } from '@/stores/useArtistsList';
 import QrCode from '@/components/QrCode.vue';
 import axios from 'axios';
+import Coordonnees from '@/components/Coordonnees.vue';
 
 const props = defineProps(['id']);
 
