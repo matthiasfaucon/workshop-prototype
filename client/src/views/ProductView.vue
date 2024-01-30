@@ -25,7 +25,7 @@ onMounted(async () => {
   getUserLocation();
 
   try {
-    const response = await axios.post(`https://workshop-prototype.vercel.app/generate-qrcode`, {
+    const response = await axios.post(`http://localhost:5000/generate-qrcode`, {
       artiste: artistesList[id.value - 1],
     });
 

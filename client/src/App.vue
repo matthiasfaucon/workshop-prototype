@@ -2,8 +2,8 @@
   <div>
     <div class="wrapper">
       <nav>
-        <img class="logo" src="./assets/logo.svg" alt="Logo" />
-        <h2 class="color-brand-texte">Scan Infinity</h2>
+        <img class="logo" src="./assets/logo_scanfinity_white.svg" alt="Logo" />
+        <!-- <h2 class="color-brand-texte">Scan Infinity</h2> -->
         <!-- <RouterLink to="/">Accueil</RouterLink>
         <RouterLink to="/product">Produit</RouterLink> -->
       </nav>
@@ -18,23 +18,24 @@ import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <style>
-#app {
-  background-color: rgb(34, 34, 34);
-  height: 100%;
-}
-
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #f5f5f5;
   width: 100%;
   height: 100vh;
+  color: #F8F8F8;
+  font-family: 'Futura Hv BT';
+}
+
+#app {
+  background-color: #121212;
+  min-height: 100%;
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
 }
 
 nav {
@@ -42,11 +43,12 @@ nav {
   padding: 1rem 3rem;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  border-bottom: 2px solid #F8F8F8;
 }
 
 nav a {
-  color: white;
+  color: #F8F8F8;
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 700;
@@ -57,7 +59,8 @@ a {
 }
 
 .color-brand-texte {
-  color: #f5f5f5;
-  font-size: 1.2rem;
+  color: #F8F8F8;
+  font-size: 1rem;
+  margin-left: 0.8rem;
 }
 </style>
