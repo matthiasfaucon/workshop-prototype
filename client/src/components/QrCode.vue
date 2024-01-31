@@ -1,6 +1,10 @@
 <template>
     <div v-if="isDisplay" class="qr-code-display">
         <h2>Trouvez le QR Code !</h2>
+        <div class="first-coordonnees">
+            <p class="artist-name">Latitude : {{ list[id - 1].first_step_geoloc.latitude }}</p>
+            <p class="artist-name">Longitude : {{ list[id - 1].first_step_geoloc.longitude }}</p>
+        </div>
         <qrcode-stream :track="selected.value" @result="handleQrCodeResult" @error="logErrors" />
         <div class="artist-presentation">
 
@@ -51,7 +55,7 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         const centerX = x + width / 2;
         const centerY = y + height / 2;
 
-        const fontSize = Math.max(12, (50 * width) / ctx.canvas.width);
+        const fontSize = Math.max(10, (50 * width) / ctx.canvas.width);
 
         // Ajouter un espace autour du texte
         const textX = centerX;
@@ -62,17 +66,18 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
         console.log(artisteInfo);
 
         // Afficher les informations de l'artiste de manière structurée
-        let artisteText = `Artiste: ${artisteInfo.artiste.nom}`;
+        let artisteText = `${artisteInfo.artiste.nom}`;
 
         if (artisteInfo.artiste.second_step_geoloc.length === 1) {
             // Si un QR code a été détecté, arrêter le scan
             isDisplay.value = true;
             if (artisteInfo.artiste.second_step_geoloc[0].is_working === true) {
                 // Renvoyer vers l'url dans artisteInfo.artiste.second_step_geoloc[0].url
-                window.location.href = artisteInfo.artiste.second_step_geoloc[0].url;
+                // window.location.href = artisteInfo.artiste.second_step_geoloc[0].url;
+                window.open(artisteInfo.artiste.second_step_geoloc[0].url);
             } else {
                 // Renvoyer vers l'url dans artisteInfo.artiste.second_step_geoloc[0].url
-                artisteText += `\nCe n'est pas le bon QR code, veuillez scanner un autre QR code`;
+                artisteText += `\nCe n'est pas le bon QR code,\nveuillez en scanner un autre.`;
             }
         } else {
             // Si plusieurs QR codes ont été détectés, continuer le scan
@@ -85,30 +90,41 @@ function paintBoundingBoxAndText(detectedCodes, ctx) {
 
         // Trouver la largeur maximale parmi toutes les lignes
         let maxWidth = 0;
+        let totalTextHeight = 0;
+
         for (const line of lines) {
-            const lineWidth = ctx.measureText(line).width;
+            const textMetrics = ctx.measureText(line);
+            const lineWidth = textMetrics.width;
+            const textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+
             maxWidth = Math.max(maxWidth, lineWidth);
+            totalTextHeight += textHeight;
         }
 
         // Dessiner un rectangle de fond blanc pour le texte avec de la marge
-        const padding = 10;
-        const textHeight = lines.length * lineHeight + padding * 2;
+        const padding = 100;
 
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = '#121212';
         ctx.fillRect(
             textX - maxWidth / 2 - padding,
-            textY - textHeight / 2,
+            textY - totalTextHeight / 2 - padding,
             maxWidth + padding * 2,
-            textHeight
+            totalTextHeight + padding * 2
         );
 
         // Utiliser une couleur de texte noire sans contour
-        ctx.font = `bold ${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
-        ctx.fillStyle = '#000';
 
         // Dessiner chaque ligne de texte
         for (let i = 0; i < lines.length; i++) {
+            if (i === 0) {
+                ctx.fillStyle = '#718DEA';
+                ctx.font = `bold 1.5rem Eras ITC`;
+            }
+            else {
+                ctx.fillStyle = '#F8F8F8';
+                ctx.font = `bold 1.1rem Futura Bk BT`;
+            }
             const line = lines[i];
             const lineY = textY + i * lineHeight - (lines.length - 1) * lineHeight / 2;
 
@@ -134,6 +150,17 @@ const logErrors = console.error;
 </script>
 
 <style>
+.first-coordonnees {
+    display: flex;
+    gap: 1rem;
+}
+
+.first-coordonnees p {
+    background-color: #718DEA;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
 .qr-code-display {
     display: flex;
     flex-direction: column;
@@ -148,7 +175,7 @@ const logErrors = console.error;
     color: white;
 }
 
-.qr-code-display div:first-of-type {
+.qr-code-display div:nth-of-type(2) {
     height: 30rem !important;
     width: 70% !important;
 }
@@ -160,6 +187,7 @@ const logErrors = console.error;
     gap: 1rem;
     width: 80%;
     height: auto;
+    margin-bottom: 5rem;
 }
 
 .info-artist {

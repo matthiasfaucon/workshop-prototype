@@ -17,16 +17,16 @@ export const useArtistsList = defineStore('artistesList', () => {
             {
               id: 1,
               adresse : "Adresse 1",
-              latitude: 40.18995,
-              longitude: 10.59605,
+              latitude: 48.856614,
+              longitude: 2.3522219,
               is_working: true,
               url: "https://youtu.be/dQw4w9WgXcQ"
             },
             {
               id: 2,
               adresse : "Adresse 2",
-              latitude: 75.5941,
-              longitude: 5.18951,
+              latitude: 48.856614,
+              longitude: 2.3522219,
               is_working: false
             }
           ]
