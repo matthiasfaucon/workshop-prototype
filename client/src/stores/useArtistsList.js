@@ -61,11 +61,41 @@ export const useArtistsList = defineStore('artistesList', () => {
       ]
     },
     {
-      id: 3, nom: "Malouma", 
+      id: 3, 
+      nom: "Maluma", 
       description: "Maluma, Maluma, est un auteur-compositeur-interprète de reggaeton et guitariste colombien.", 
       image: "image3.jpg",
       begin_date: "2021-08-01",
       end_date: "2021-08-14",
+      first_geoloc: {
+        latitude: 85.856614,
+        longitude: 9516.3522219
+      },
+      second_step_geoloc : [
+        {
+          id: 1,
+          adresse : "Adresse 1",
+          latitude: 40.18995,
+          longitude: 10.59605,
+          is_working: true,
+          url: "https://www.youtube.com/watch?v=GmHrjFIWl6U"
+        },
+        {
+          id: 2,
+          adresse : "Adresse 2",
+          latitude: 75.5941,
+          longitude: 5.18951,
+          is_working: false
+        }
+      ]
+    },
+    {
+      id: 4, 
+      nom: "Drake", 
+      description: "Drake, né Aubrey Drake Graham (/ɔːˈbɹiː dɹeɪk ɡɹæm/), le 24 octobre 1986 à Toronto (Canada), est un rappeur-compositeur et acteur canadien.", 
+      image: "image4.jpg",
+      begin_date: "2021-09-01",
+      end_date: "2021-09-14",
       first_geoloc: {
         latitude: 85.856614,
         longitude: 9516.3522219
